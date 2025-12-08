@@ -1,3 +1,5 @@
+
+
 # Stock Market Data Pipeline and Technical Analysis
 
 This project demonstrates a production-grade ETL pipeline that automates stock market data collection and analysis for 5 major tech stocks (AAPL, AMZN, GOOGL, MSFT, TSLA). The pipeline extracts daily stock prices, calculates 10+ technical indicators, and stores the results in a data warehouse for SQL-based analysis.
@@ -5,8 +7,9 @@ This project demonstrates a production-grade ETL pipeline that automates stock m
 <br>
 <br>
 
-### Project Overview
 
+### Project Overview
+  
 This project demonstrates a fully automated Stock Market Data Pipeline built using:
 - Apache Airflow for orchestrating ETL pipelines
 - AWS S3 for multi-layered storage (Landing → Intermediate → Transformed)
@@ -17,7 +20,6 @@ This project demonstrates a fully automated Stock Market Data Pipeline built usi
 
 <br>
 <br>
-
 
 ### Technologies Used
 
@@ -33,13 +35,13 @@ This project demonstrates a fully automated Stock Market Data Pipeline built usi
 | **IAM Roles & Policies** | Secure Access Control      | S3 → Lambda → Redshift |
 
 
-
-
 <br>
 <br>
 
 
 ### Project Structure Diagram
+
+
 
 <div align="center">
 
