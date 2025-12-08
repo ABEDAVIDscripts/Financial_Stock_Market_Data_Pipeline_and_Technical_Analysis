@@ -18,13 +18,6 @@ This project demonstrates a fully automated Stock Market Data Pipeline built usi
 <br>
 <br>
 
-### Architecture Diagram
-
-
-
-<br>
-<br>
-
 
 ### Technologies Used
 
