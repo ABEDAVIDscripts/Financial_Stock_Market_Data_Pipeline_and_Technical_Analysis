@@ -69,9 +69,11 @@ Real-time alerts
 
 <br>
 <BR>
-<BR>
+
 
 ### Technologies Used
+
+<BR>
 
 |          Service/Tool|                 Purpose          | Configuration / Details |
 |---------------------:|---------------------------------:|--------------------------:|
@@ -79,10 +81,9 @@ Real-time alerts
 | AWS S3          | Data Lake Storage               | Buckets: landing / intermediate / transformed |
 | AWS Lambda      | Technical Indicator Processing  | Python (SMA / RSI / MACD functions), boto3 |
 | AWS Redshift    | Data Warehouse for Analytics    | ra3.xlplus, 1-node cluster |
-| Amazon QuickSight| Dashboard & Visualization      | Standard Edition |
 | Python          | ETL & Lambda logic              | pandas, numpy, requests, boto3 |
-| **APIs**            | Market Data Ingestion           | Alpha Vantage, Yahoo Finance (yfinance) |
-| **IAM Roles & Policies** | Secure Access Control      | S3 → Lambda → Redshift |
+| APIs            | Market Data Ingestion           | Alpha Vantage, Yahoo Finance (yfinance) |
+| IAM Roles & Policies | Secure Access Control      | S3 → Lambda → Redshift |
 
 
 <br>
