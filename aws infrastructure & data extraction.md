@@ -1,7 +1,7 @@
 # AWS Infrastructure & Data Extraction 
 
 <br>
-<br>
+
 
 ### 1. AWS Infrastructure Setup
 
@@ -476,4 +476,5 @@ This will load the json file to the landing zone bucket
 
 <BR>
 <BR>
+
 <BR>
