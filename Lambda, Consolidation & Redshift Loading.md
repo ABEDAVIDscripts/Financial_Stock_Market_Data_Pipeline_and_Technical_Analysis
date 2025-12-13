@@ -289,7 +289,7 @@ def lambda_handler(event, context):
 
 <img width="700" alt="sma aapl" src="https://github.com/user-attachments/assets/6c7c2eaa-ac67-43c2-8ad2-d8ab3873892c" />
 
-  - Check results in S3 intermediate bucket 
+  - Output in S3 intermediate bucket 
 
 <br>
 <br>
@@ -659,6 +659,7 @@ def lambda_handler(event, context):
 
 
 <br>
+
 
 - **Trigger DAG UI**
 
@@ -1057,6 +1058,7 @@ Create IAM role as default
 
 <br>
 <br>
+
 
 
 
