@@ -1,4 +1,4 @@
-# Data Transformation with Lambda, Consolidation and Redshift Loading
+## Data Transformation with Lambda, Consolidation and Redshift Loading
 
 <BR>
 
@@ -685,7 +685,7 @@ MACD Output <br>
 <br>
 
 
-# Data Consolidation & Redshift Loading
+## Data Consolidation & Redshift Loading
 
 <BR>
 
@@ -1058,6 +1058,7 @@ Create IAM role as default
 
 <br>
 <br>
+
 
 
 
