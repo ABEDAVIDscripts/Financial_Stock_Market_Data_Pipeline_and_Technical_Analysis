@@ -1,7 +1,7 @@
 ## Data Preparation and Business Analysis
 
 
-### 1:  Create a Table 
+### 1.  Create a Table 
 - Create temporary staging table (matches CSV structure)
 ```sql
 CREATE TABLE stock_data_temp (
@@ -391,7 +391,7 @@ FROM stocK_data_cleaned ;
 <br>
 <br>
 
-- 2. Check for NULL Value
+2. Check for NULL Value
 
 <div style="display: flex; justify-content: space-between; gap: 4%;">
   <img src="https://github.com/user-attachments/assets/8627849e-2753-4307-996d-c3e076c0a274" width="48%">
@@ -422,11 +422,11 @@ WHERE
 <br>
 <br>
 
-- 3. DATA VALIDITY CHECKS
-
+3. DATA VALIDITY CHECKS
 
 <img width="700" alt="Check for Negative Prices x Zero Prices" src="https://github.com/user-attachments/assets/b4ff1620-0ce5-4196-ae53-d43bb04562ec" />
 
+<br>
 <br>
 
 - Check for Negative Prices
@@ -443,10 +443,12 @@ ORDER BY symbol;
 ```
 
 <br>
-Output:
+
+Output: <br>
 
 <img width="700" alt="Check for Negative Prices result" src="https://github.com/user-attachments/assets/bec3c1b6-6334-4a4a-a0f7-db463cf08dbd" />
 
+<br>
 <br>
 
 - Check for Zero Prices
@@ -464,19 +466,13 @@ ORDER BY symbol;
 
 <br>
 
-Output:
+Output: <br>
 <img width="700" alt="Check for Zero Prices result" src="https://github.com/user-attachments/assets/f6b78faa-085d-448d-9459-14942a313c71" />
 
 <br>
 
-- Check RSI out of range = (-0 OR 100+)
+- Check RSI out of range, out of range = -0 OR 100+
 
-<div style="display: flex; justify-content: space-between; gap: 4%;">
-  <img src="https://github.com/user-attachments/assets/ec9a4d17-c3af-40fe-96eb-6c0517fb30f7" width="48%">
-  <img src="https://github.com/user-attachments/assets/6dbf2588-110e-447c-8159-3fcda51f37ed" width="48%">
-</div>
-
-<br>
 
 ```sql
 SELECT
@@ -487,9 +483,16 @@ WHERE
 ORDER BY symbol;
 ```
 
+<br>
+
+Output <br>
+<img width="700"  alt="Check RSI out of range (0-100) result" src="https://github.com/user-attachments/assets/550835dd-c0d1-4f9e-808c-8d05c7ffdc6c" />
+
+<br>
 
 
 - Check for extreme price movements (>50% in one day = potential data error)
+
 ```sql
 WITH pricetable AS
   (SELECT
@@ -505,10 +508,26 @@ WITH pricetable AS
   WHERE ABS(close_per_change) > 50;
 ```
 
+<br>
+
+Output: <br>
+
+<img width="700" alt="result Check for extreme price movements (above 50% in one day - potential data error)" src="https://github.com/user-attachments/assets/fb0f5922-619a-41e4-bf24-75ed7b2fa3ef" />
+
+<br>
+<br>
 
 
 - Error found, Investigate
 - See the AAPL price structure
+
+<div style="display: flex; justify-content: space-between; gap: 4%;">
+  <img src="https://github.com/user-attachments/assets/ab2dbfb6-6667-4555-ab39-d382991c8b7d" width="48%">
+  <img src="https://github.com/user-attachments/assets/076ee2f2-227b-4774-99c1-2c02a167b705" width="48%">
+</div>
+
+<br>
+
 ```sql
 SELECT
   date, close, 
@@ -522,9 +541,17 @@ WHERE symbol = 'AAPL'
 ORDER BY date;
 ```
 
-
+<br>
 
 - AAPL price range
+
+<div style="display: flex; justify-content: space-between; gap: 4%;">
+  <img src="https://github.com/user-attachments/assets/b34878a6-ff6c-4037-9ad3-d3c361f8882e" width="48%">
+  <img src="https://github.com/user-attachments/assets/65677759-18ff-4298-850c-e08cecb57c78" width="48%">
+</div>
+
+<br>
+
 ```sql
 SELECT 
   symbol,
@@ -537,9 +564,18 @@ GROUP BY symbol
 HAVING symbol = 'AAPL';
 ```
 
+<br>
 
 
-- Check each symbol for close-price values that fall outside the valid range for 2025 (52-week period)
+- Check all symbol for possible extreme price movements based on Valid close-price range in 2025 (52-week period)
+
+<div style="display: flex; justify-content: space-between; gap: 4%;">
+  <img src="https://github.com/user-attachments/assets/02a43dfa-68d1-43b0-b515-e30d2b227279" width="48%">
+  <img src="https://github.com/user-attachments/assets/b04f1f84-2a52-4228-af3f-5be79777fe2f" width="48%">
+</div>
+
+<br>
+
 ```sql
 SELECT
   symbol,
@@ -563,9 +599,16 @@ GROUP BY symbol
 ORDER BY symbol;
 ```
 
+<br>
+<br>
 
-- AAPL corrupt data = 7 and GOOGL corrupt data = 30
+- AAPL corrupt data = 7 
 - Confirm the corrupt range for AAPL, to know the range to delete
+
+<img width="700" alt="Confirm the exact corrupted range for AAPL to know what range to delete" src="https://github.com/user-attachments/assets/a4951ecf-0880-4a52-b0e7-55a55858d547" />
+
+<br>
+
 ```sql
 SELECT symbol,
   COUNT(CASE WHEN close > 300 THEN 1 END) AS above_300,
@@ -575,17 +618,9 @@ WHERE symbol = 'AAPL'
 GROUP BY symbol;
 ```
 
+<br>
 
-- Confirm the corrupted range for GOOGL, to know what range to delete
-```sql
-SELECT symbol,
-  COUNT(CASE WHEN close > 250 THEN 1 END) AS above_250,
-  COUNT(CASE WHEN close < 140 THEN 1 END) AS below_140
-FROM stock_data_cleaned
-WHERE symbol = 'GOOGL'
-GROUP BY symbol;
-```
-
+> The excess price range for GOOGL are valid in 2025, hence delete only AAPL corrupted price range
 
 - Delete AAPL corrupt data above 300
 ```sql
@@ -593,6 +628,7 @@ DELETE FROM stock_data_cleaned
 WHERE symbol = 'AAPL' AND close > 300;
 ```
 
+<br>
 
 - Verify Delete AAPL corrupt data
 ```sql
@@ -605,6 +641,13 @@ WHERE
 ```
 
 <br>
+
+Ouput: <br>
+
+<img width="700" alt="verification result for AAPL delete above 300" src="https://github.com/user-attachments/assets/a3647686-75f8-4a53-8d0b-f13f74a8fa45" />
+
+
+<br>
 <br>
 <br>
 
@@ -612,7 +655,8 @@ WHERE
 
 ## Business Question
 
-- 1. which stock had the highest percentage gain/loss over the period?
+1. which stock had the highest percentage gain/loss over the period?
+
 ```sql
 -- (new value - old value)/ old value) * 100
 
@@ -790,6 +834,7 @@ FROM stock_data_cleaned
 GROUP BY weekdays
 ORDER BY buy_signals DESC;
 ```
+
 
 
 
