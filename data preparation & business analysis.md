@@ -1,7 +1,5 @@
 ## Data Preparation and Business Analysis
 
-<br>
-<br>
 
 ### 1:  Create a Table 
 - Create temporary staging table (matches CSV structure)
@@ -295,10 +293,8 @@ TRUNCATE TABLE stock_data_temp;
 <br>
 <br>
 
-
-### 3. Data Preparation
-
-1.  Check data record
+#### 2.5: Verify
+- Check data record
 ```sql
 SELECT
 COUNT(DISTINCT symbol) AS no_of_symbols,
@@ -309,7 +305,7 @@ MAX(date) - MIN(date) AS date_range_in_days
 FROM final_stock_data;
 ```
 
-
+<BR>
 
 - Record per Symbol
 ```sql
@@ -327,7 +323,17 @@ ORDER BY 1 ;
 <br>
 <br>
 
-2. Check for Duplicate
+### 3. Data Preparation
+
+1. Check for Duplicate
+
+<div style="display: flex; justify-content: space-between; gap: 4%;">
+  <img src="https://github.com/user-attachments/assets/913d81fb-eb99-4d14-85cd-1569d355df11"  aalt="check for duplicate" width="48%">
+  <img src="https://github.com/user-attachments/assets/94af75e8-f72c-42bc-b471-edcdb34b49e7" alt="check for duplicate result" width="48%">
+</div>
+
+<BR>
+
 ```sql
 SELECT
     COUNT(*) AS duplicates, 
@@ -337,7 +343,7 @@ GROUP BY symbol, date
 HAVING COUNT(*) > 1;
 ```
 
-
+<br>
 
 - Text error in APPL, UPDATE to AAPL
 ```SQL
@@ -346,7 +352,7 @@ SET symbol = 'AAPL'
 WHERE symbol = 'APPL';
 ```
 
-
+<br>
 
 - Duplicate found! Remove Duplicates using a BACKUP TABLE
 ```sql
@@ -361,7 +367,7 @@ FROM (
 WHERE rn = 1;
 ```
 
-
+<br>
 
 - verify
 ```sql
@@ -373,6 +379,8 @@ GROUP BY symbol, date
 HAVING count(*) > 1;
 ```
 
+<br>
+
 - Count remaining data
 ```sql
 SELECT
@@ -383,7 +391,15 @@ FROM stocK_data_cleaned ;
 <br>
 <br>
 
-- 3. Check for NULL Value 
+- 2. Check for NULL Value
+
+<div style="display: flex; justify-content: space-between; gap: 4%;">
+  <img src="https://github.com/user-attachments/assets/8627849e-2753-4307-996d-c3e076c0a274" width="48%">
+  <img src="https://github.com/user-attachments/assets/ee4794a2-ea62-48d0-aaee-95fdcc67daba" width="48%">
+</div>
+
+<br>
+
 ```sql
 SELECT * 
 FROM stock_data_cleaned
@@ -406,12 +422,12 @@ WHERE
 <br>
 <br>
 
-- 4. DATA VALIDITY CHECKS
-``` sql
-SELECT * FROM stock_data_cleaned;
-```
+- 3. DATA VALIDITY CHECKS
 
 
+<img width="700" alt="Check for Negative Prices x Zero Prices" src="https://github.com/user-attachments/assets/b4ff1620-0ce5-4196-ae53-d43bb04562ec" />
+
+<br>
 
 - Check for Negative Prices
 ```sql
@@ -426,7 +442,12 @@ WHERE
 ORDER BY symbol;    
 ```
 
+<br>
+Output:
 
+<img width="700" alt="Check for Negative Prices result" src="https://github.com/user-attachments/assets/bec3c1b6-6334-4a4a-a0f7-db463cf08dbd" />
+
+<br>
 
 - Check for Zero Prices
 ```sql
@@ -441,9 +462,22 @@ WHERE
 ORDER BY symbol;
 ```
 
+<br>
 
+Output:
+<img width="700" alt="Check for Zero Prices result" src="https://github.com/user-attachments/assets/f6b78faa-085d-448d-9459-14942a313c71" />
+
+<br>
 
 - Check RSI out of range = (-0 OR 100+)
+
+<div style="display: flex; justify-content: space-between; gap: 4%;">
+  <img src="https://github.com/user-attachments/assets/ec9a4d17-c3af-40fe-96eb-6c0517fb30f7" width="48%">
+  <img src="https://github.com/user-attachments/assets/6dbf2588-110e-447c-8159-3fcda51f37ed" width="48%">
+</div>
+
+<br>
+
 ```sql
 SELECT
     symbol, date, rsi, rsi_signal
@@ -756,6 +790,7 @@ FROM stock_data_cleaned
 GROUP BY weekdays
 ORDER BY buy_signals DESC;
 ```
+
 
 
 
