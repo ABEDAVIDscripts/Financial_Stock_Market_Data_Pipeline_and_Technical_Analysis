@@ -620,6 +620,13 @@ GROUP BY symbol;
 
 <br>
 
+Output <br>
+<img width="700" alt="corrupted range for AAPL" src="https://github.com/user-attachments/assets/297aab19-10f5-4d5d-970a-9b8bb0189de4" />
+
+
+<br>
+
+
 > The excess price range for GOOGL are valid in 2025, hence delete only AAPL corrupted price range
 
 - Delete AAPL corrupt data above 300
@@ -686,6 +693,11 @@ SELECT
 FROM sndtable
 ORDER BY percent_change DESC;
 ```
+
+<br>
+
+Output <br>
+<img width="700"  alt="1  RESULT  Which stock had the highest percentage gain or loss over the period" src="https://github.com/user-attachments/assets/9cefca46-e782-4b97-a3a3-750efd78a855" />
 
 <br>
 
@@ -834,6 +846,7 @@ FROM stock_data_cleaned
 GROUP BY weekdays
 ORDER BY buy_signals DESC;
 ```
+
 
 
 
