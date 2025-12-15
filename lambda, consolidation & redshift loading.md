@@ -999,7 +999,14 @@ Modify Airflow DAG to call the consolidation Lambda after all processing is done
 
 <img width="700" alt="trigger consolidate" src="https://github.com/user-attachments/assets/9968138c-f3cc-4209-988e-39517af6e612" />
 
+<br>
+
 - Trigger the DAG UI
+- Output samples in fp-transformed-bucket (download and inspect the CSV files): <br>
+[consolidated_AAPL_20251114_164346](https://drive.google.com/file/d/1X031opKgSbreIgBpCfFHbtOYLr5CcrOq/view?usp=sharing) <br>
+[consolidated_AMZN_20251115_164739](https://drive.google.com/file/d/1xmK_yti0MCNKK4OzIkPrRjhJUj4j4_2n/view?usp=sharing) <br>
+
+
 
 <br>
 <br>
@@ -1048,6 +1055,13 @@ Create IAM role as default
 
 #### 3.2: Launch Query Editor 
 
+<div style="display: flex; justify-content: space-between; gap: 20px;">
+  <img src="https://github.com/user-attachments/assets/60bf7e2a-b32b-4c6d-a580-79e3fe353b1c" alt="Launch Query Editor 1" width="48%">
+  <img src="https://github.com/user-attachments/assets/bf69953f-2d26-46f3-872a-245a5af03800" alt="Launch Query Editor 2" width="48%">
+</div>
+
+<br>
+
 - Redshift Console 
 - Query editor v2
 - `financial-data-cluster`
@@ -1056,6 +1070,7 @@ Create IAM role as default
 
 <br>
 <br>
+
 
 
 
